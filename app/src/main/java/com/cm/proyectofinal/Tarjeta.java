@@ -10,6 +10,7 @@ package com.cm.proyectofinal;
 public class Tarjeta {
 
     String nombreJugador;
+    String equipo;
 
 
 }
