@@ -14,4 +14,8 @@ public class MainActivity extends AppCompatActivity {
         //Viri hizo commit
 
     }
+
+    public void iniciarDB(){
+
+    }
 }
