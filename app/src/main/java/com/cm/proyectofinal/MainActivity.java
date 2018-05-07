@@ -15,7 +15,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Metodo para inicializar la base de datos
+     */
     public void iniciarDB(){
+
 
     }
 }
