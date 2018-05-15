@@ -1,14 +1,19 @@
 package com.cm.proyectofinal;
 
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.widget.ImageView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static String TAG = "MainActivity";
 
     DB db;
 
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new FetchItemTask().execute();
 
         //iniciarDB();
 
@@ -155,21 +161,27 @@ public class MainActivity extends AppCompatActivity {
         arrayRutas.add(R.drawable.andresguardado);
         arrayRutas.add(R.drawable.harrykane);
         arrayRutas.add(R.drawable.sonheumin);
-        arrayRutas.add(R.drawable.paulodybala);
         arrayRutas.add(R.drawable.antoinegriezmann);
         arrayRutas.add(R.drawable.neymarjr);
         arrayRutas.add(R.drawable.keylornavas);
         arrayRutas.add(R.drawable.sergioramos);
+        arrayRutas.add(R.drawable.paulodybala);
         arrayRutas.add(R.drawable.robertlewandowski);
         arrayRutas.add(R.drawable.edinsoncavani);
 
-
     }
 
-
-
-
-
-
-
+    private static class FetchItemTask extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... params){
+         try{
+           String result = new PlayerFetcher().getUrlString("http://serverbpw.com/cm/cards.php?type=json");
+           Log.i(TAG, "Archivos recuperados de URL: "+result);
+         }catch(IOException ioe){
+             Log.d(TAG, "Error al recuperar archivos de URL: ", ioe);
+         }
+         //new PlayerFetcher().FetchItems();
+         return null;
+        }
+    }
 }
