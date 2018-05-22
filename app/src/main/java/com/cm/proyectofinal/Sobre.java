@@ -9,12 +9,11 @@ public class Sobre {
 
         List<Card> card;
 
-
     }//Termina clase interna Jugador
 
     public class Card{
         String id;
-    }
+    }//Termina clase interna Card
 
 }//Termina clase Sobre
 

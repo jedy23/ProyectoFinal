@@ -174,12 +174,6 @@ public class MainActivity extends AppCompatActivity {
     private static class FetchItemTask extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... params){
-//         try{
-//           String result = new PlayerFetcher().getUrlString("http://serverbpw.com/cm/cards.php?type=json");
-//           Log.i(TAG, "Archivos recuperados de URL: "+result);
-//         }catch(IOException ioe){
-//             Log.d(TAG, "Error al recuperar archivos de URL: ", ioe);
-//         }
 
             new PlayerFetcher().fetchItems();
          return null;

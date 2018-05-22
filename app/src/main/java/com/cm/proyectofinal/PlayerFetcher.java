@@ -47,38 +47,45 @@ public class PlayerFetcher {
     public void fetchItems(){
 
         try{
+            //Obtenemos Json del servidor y guardamos en un  String
             String result = new PlayerFetcher().getUrlString("http://serverbpw.com/cm/cards.php?type=json");
+
+            //Mostramos String recibido de servidor
             Log.i(TAG, "Archivos recuperados de URL: "+result);
             parseItemsWithGson(result);
+
+
         }catch(IOException ioe){
+            //mensaje de error en Logcat
             Log.d(TAG, "Error al recuperar archivos de URL: ", ioe);
         }
-        //AUN NO LO IMPLELEMTO
-    }
+    }//Termina método fetchItems()
 
-
-    public void parseItemsWithJson() {
-
-    }
 
     public void parseItemsWithGson(String result){
 
         /*Igual que en Json debemos tener una clase que tenga los mismos
-          atributos que el JSONobject que estamos rebiendo.
+          atributos que el JSONobject que estamos recibiendo.
 
-          Entonces, creo que debería crear una clase "Sobre.java" que tenga la sig Estructura:
+          Entonces, creo que deberíamos crear una clase "Sobre.java" que tenga la sig Estructura:
 
-           class Sobre{
-          List<Jugador> result;
+        public class Sobre {
+            Jugador result;
 
             public class Jugador{
-                int id;
+
+                List<Card> card;
+
             }//Termina clase interna Jugador
 
-          }//Termina clase Sobre
+            public class Card{
+                String id;
+            }//Termina clase interna Card
 
-        */
+        }//Termina clase Sobre  */
+
+
         Sobre sobre = new Gson().fromJson(result, Sobre.class);
 
-    }
-}
+    }//Termina método parseItemsWithGson()
+}//Termina clase PLayerFetcher
