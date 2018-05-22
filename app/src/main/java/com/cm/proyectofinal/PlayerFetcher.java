@@ -1,5 +1,9 @@
 package com.cm.proyectofinal;
 
+import android.util.Log;
+import com.google.gson.Gson;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +44,41 @@ public class PlayerFetcher {
     }
 
 
-    public void FetchItems(){
+    public void fetchItems(){
+
+        try{
+            String result = new PlayerFetcher().getUrlString("http://serverbpw.com/cm/cards.php?type=json");
+            Log.i(TAG, "Archivos recuperados de URL: "+result);
+            parseItemsWithGson(result);
+        }catch(IOException ioe){
+            Log.d(TAG, "Error al recuperar archivos de URL: ", ioe);
+        }
         //AUN NO LO IMPLELEMTO
+    }
+
+
+    public void parseItemsWithJson() {
+
+    }
+
+    public void parseItemsWithGson(String result){
+
+        /*Igual que en Json debemos tener una clase que tenga los mismos
+          atributos que el JSONobject que estamos rebiendo.
+
+          Entonces, creo que debería crear una clase "Sobre.java" que tenga la sig Estructura:
+
+           class Sobre{
+          List<Jugador> result;
+
+            public class Jugador{
+                int id;
+            }//Termina clase interna Jugador
+
+          }//Termina clase Sobre
+
+        */
+        Sobre sobre = new Gson().fromJson(result, Sobre.class);
+
     }
 }
